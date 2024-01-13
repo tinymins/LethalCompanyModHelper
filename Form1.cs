@@ -77,11 +77,19 @@ namespace LethalCompanyModHelper
                 }
             }
             lstMods.SelectedItems.Clear();
-            lstMods.SelectedItems.Add(lstMods.Items[0]);
+            if (lstMods.Items.Count != 0)
+            {
+                lstMods.SelectedItems.Add(lstMods.Items[0]);
+            }
         }
 
         private void btnMod_Click(object sender, EventArgs e)
         {
+            if (lstMods.SelectedIndex == -1)
+            {
+                MessageBox.Show("找不到有效的MOD文件夹！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             // 获取名为 "Lethal Company" 的进程是否存在
             Process[] processes = Process.GetProcessesByName("Lethal Company");
             if (processes.Length > 0)
