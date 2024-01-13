@@ -151,5 +151,10 @@ namespace LethalCompanyModHelper
         {
             btnStart.Enabled = true;
         }
+
+        private void linkHomepage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("explorer.exe", "https://j3cx.com/feedback");
+        }
     }
 }

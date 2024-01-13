@@ -32,13 +32,14 @@
             lstMods = new ListBox();
             btnMod = new Button();
             btnStart = new Button();
+            linkHomepage = new LinkLabel();
             SuspendLayout();
             // 
             // lstMods
             // 
             lstMods.FormattingEnabled = true;
             lstMods.ItemHeight = 25;
-            lstMods.Location = new Point(12, 12);
+            lstMods.Location = new Point(12, 33);
             lstMods.Name = "lstMods";
             lstMods.Size = new Size(516, 429);
             lstMods.TabIndex = 0;
@@ -46,7 +47,7 @@
             // btnMod
             // 
             btnMod.Enabled = false;
-            btnMod.Location = new Point(12, 447);
+            btnMod.Location = new Point(12, 468);
             btnMod.Name = "btnMod";
             btnMod.Size = new Size(254, 83);
             btnMod.TabIndex = 1;
@@ -57,7 +58,7 @@
             // btnStart
             // 
             btnStart.Enabled = false;
-            btnStart.Location = new Point(272, 447);
+            btnStart.Location = new Point(272, 468);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(254, 83);
             btnStart.TabIndex = 2;
@@ -65,11 +66,23 @@
             btnStart.UseVisualStyleBackColor = true;
             btnStart.Click += btnStart_Click;
             // 
+            // linkHomepage
+            // 
+            linkHomepage.AutoSize = true;
+            linkHomepage.Location = new Point(440, 5);
+            linkHomepage.Name = "linkHomepage";
+            linkHomepage.Size = new Size(88, 25);
+            linkHomepage.TabIndex = 3;
+            linkHomepage.TabStop = true;
+            linkHomepage.Text = "关于作者";
+            linkHomepage.LinkClicked += linkHomepage_LinkClicked;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(539, 543);
+            ClientSize = new Size(539, 579);
+            Controls.Add(linkHomepage);
             Controls.Add(btnStart);
             Controls.Add(btnMod);
             Controls.Add(lstMods);
@@ -81,6 +94,7 @@
             Text = "致命公司MOD安装器 --by@茗伊";
             Load += Form1_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -88,5 +102,6 @@
         private ListBox lstMods;
         private Button btnMod;
         private Button btnStart;
+        private LinkLabel linkHomepage;
     }
 }
