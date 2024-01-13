@@ -51,7 +51,7 @@
             btnMod.Name = "btnMod";
             btnMod.Size = new Size(254, 83);
             btnMod.TabIndex = 1;
-            btnMod.Text = "MOD";
+            btnMod.Text = "应用 MOD";
             btnMod.UseVisualStyleBackColor = true;
             btnMod.Click += btnMod_Click;
             // 
@@ -62,7 +62,7 @@
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(254, 83);
             btnStart.TabIndex = 2;
-            btnStart.Text = "START";
+            btnStart.Text = "开始游戏";
             btnStart.UseVisualStyleBackColor = true;
             btnStart.Click += btnStart_Click;
             // 
