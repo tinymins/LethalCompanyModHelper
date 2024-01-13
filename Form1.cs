@@ -1,7 +1,5 @@
-using GameFinder.RegistryUtils;
-using GameFinder.StoreHandlers.Steam;
-using GameFinder.StoreHandlers.Steam.Models.ValueTypes;
-using NexusMods.Paths;
+using GameLib;
+using GameLib.Core;
 using System.Diagnostics;
 
 namespace LethalCompanyModHelper
@@ -13,7 +11,7 @@ namespace LethalCompanyModHelper
             InitializeComponent();
         }
 
-        private string appPath = "";
+        private IGame? game;
         private List<string> mods = new();
         private List<string> deleteDirectories = new() { "_state", "BepInEx" };
         public static void CopyDirectory(string sourceDir, string targetDir)
@@ -41,14 +39,32 @@ namespace LethalCompanyModHelper
             }
         }
 
+        private static IGame? GetGame()
+        {
+            var launcherManager = new LauncherManager(new LauncherOptions() { QueryOnlineData = true });
+            foreach (var launcher in launcherManager.GetLaunchers())
+            {
+                if (launcher.Name.Equals("Steam"))
+                {
+                    foreach (var game in launcher.Games)
+                    {
+                        if (game.Id.Equals("1966720"))
+                        {
+                            return game;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            // 获取游戏路径
-            var handler = new SteamHandler(FileSystem.Shared, OperatingSystem.IsWindows() ? WindowsRegistry.Shared : null);
-            var game = handler.FindOneGameById((AppId)1966720, out var errors);
+            // 获取游戏
+            var game = GetGame();
             if (game != null)
             {
-                appPath = game.Path.ToString();
+                this.game = game;
                 btnMod.Enabled = true;
                 btnStart.Enabled = true;
             }
@@ -85,6 +101,11 @@ namespace LethalCompanyModHelper
 
         private void btnMod_Click(object sender, EventArgs e)
         {
+            if (game == null)
+            {
+                MessageBox.Show("未找到致命公司安装路径！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (lstMods.SelectedIndex == -1)
             {
                 MessageBox.Show("找不到有效的MOD文件夹！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -101,20 +122,24 @@ namespace LethalCompanyModHelper
             // 复制文件
             foreach (var dirName in deleteDirectories)
             {
-                var dirPath = Path.Combine(appPath, dirName);
+                var dirPath = Path.Combine(game.InstallDir, dirName);
                 if (Directory.Exists(dirPath))
                 {
                     Directory.Delete(dirPath, true);
                 }
             }
             var modPath = mods[lstMods.SelectedIndex];
-            CopyDirectory(modPath, appPath);
+            CopyDirectory(modPath, game.InstallDir);
             MessageBox.Show($"致命公司MOD包 \"{lstMods.SelectedItem}\" 安装成功！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", "steam://rungameid/1966720");
+            if (game == null)
+            {
+                return;
+            }
+            Process.Start("explorer.exe", game.LaunchString);
             btnStart.Enabled = false;
             var timer = new System.Windows.Forms.Timer();
             timer.Interval = 500;
