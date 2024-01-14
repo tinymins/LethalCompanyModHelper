@@ -1,6 +1,9 @@
-using GameLib;
-using GameLib.Core;
+ï»¿using Narod.SteamGameFinder;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 
 namespace LethalCompanyModHelper
 {
@@ -11,9 +14,9 @@ namespace LethalCompanyModHelper
             InitializeComponent();
         }
 
-        private IGame? game;
-        private List<string> mods = new();
-        private List<string> deleteDirectories = new() { "_state", "BepInEx" };
+        private string gamePath = null;
+        private List<string> mods = new List<string> { };
+        private List<string> deleteDirectories = new List<string> { "_state", "BepInEx" };
         public static void CopyDirectory(string sourceDir, string targetDir)
         {
             // Check if the target directory exists, if not, create it.
@@ -39,41 +42,28 @@ namespace LethalCompanyModHelper
             }
         }
 
-        private static IGame? GetGame()
-        {
-            var launcherManager = new LauncherManager(new LauncherOptions() { QueryOnlineData = true });
-            foreach (var launcher in launcherManager.GetLaunchers())
-            {
-                if (launcher.Name.Equals("Steam"))
-                {
-                    foreach (var game in launcher.Games)
-                    {
-                        if (game.Id.Equals("1966720"))
-                        {
-                            return game;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            // »ñÈ¡ÓÎÏ·
-            var game = GetGame();
-            if (game != null)
+            // è·å–æ¸¸æˆ
+            SteamGameLocator steamGameLocator = new SteamGameLocator();
+            try
             {
-                this.game = game;
-                btnMod.Enabled = true;
-                btnStart.Enabled = true;
+                var game = steamGameLocator.getGameInfoByFolder("Lethal Company");
+                gamePath = game.steamGameLocation;
+            } catch { }
+
+            if (gamePath == null || gamePath.Equals(""))
+            {
+                gamePath = null;
+                MessageBox.Show("æœªæ‰¾åˆ°è‡´å‘½å…¬å¸å®‰è£…è·¯å¾„ï¼", "é”™è¯¯", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Î´ÕÒµ½ÖÂÃü¹«Ë¾°²×°Â·¾¶£¡", "´íÎó", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnMod.Enabled = true;
+                btnStart.Enabled = true;
             }
 
-            // »ñÈ¡ MOD ÁĞ±í
+            // è·å– MOD åˆ—è¡¨
             var exePath = AppDomain.CurrentDomain.BaseDirectory;
             var directories = Directory.GetDirectories(exePath);
             foreach (var directory in directories)
@@ -86,7 +76,7 @@ namespace LethalCompanyModHelper
             lstMods.Items.Clear();
             foreach (var mod in mods)
             {
-                string? item = Path.GetFileName(mod);
+                string item = Path.GetFileName(mod);
                 if (item != null)
                 {
                     lstMods.Items.Add(item);
@@ -101,53 +91,55 @@ namespace LethalCompanyModHelper
 
         private void btnMod_Click(object sender, EventArgs e)
         {
-            if (game == null)
+            if (gamePath == null)
             {
-                MessageBox.Show("Î´ÕÒµ½ÖÂÃü¹«Ë¾°²×°Â·¾¶£¡", "´íÎó", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("æœªæ‰¾åˆ°è‡´å‘½å…¬å¸å®‰è£…è·¯å¾„ï¼", "é”™è¯¯", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (lstMods.SelectedIndex == -1)
             {
-                MessageBox.Show("ÕÒ²»µ½ÓĞĞ§µÄMODÎÄ¼ş¼Ğ£¡", "´íÎó", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("æ‰¾ä¸åˆ°æœ‰æ•ˆçš„MODæ–‡ä»¶å¤¹ï¼", "é”™è¯¯", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            // »ñÈ¡ÃûÎª "Lethal Company" µÄ½ø³ÌÊÇ·ñ´æÔÚ
+            // è·å–åä¸º "Lethal Company" çš„è¿›ç¨‹æ˜¯å¦å­˜åœ¨
             Process[] processes = Process.GetProcessesByName("Lethal Company");
             if (processes.Length > 0)
             {
-                MessageBox.Show("Lethal Company.exe ½ø³Ì´æÔÚ£¬ÇëÏÈ½áÊøÓÎÏ·£¡", "´íÎó", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lethal Company.exe è¿›ç¨‹å­˜åœ¨ï¼Œè¯·å…ˆç»“æŸæ¸¸æˆï¼", "é”™è¯¯", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // ¸´ÖÆÎÄ¼ş
+            // å¼€å§‹å®‰è£…MOD
+            btnMod.Enabled = false;
             foreach (var dirName in deleteDirectories)
             {
-                var dirPath = Path.Combine(game.InstallDir, dirName);
+                var dirPath = Path.Combine(gamePath, dirName);
                 if (Directory.Exists(dirPath))
                 {
                     Directory.Delete(dirPath, true);
                 }
             }
             var modPath = mods[lstMods.SelectedIndex];
-            CopyDirectory(modPath, game.InstallDir);
-            MessageBox.Show($"ÖÂÃü¹«Ë¾MOD°ü \"{lstMods.SelectedItem}\" °²×°³É¹¦£¡", "³É¹¦", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CopyDirectory(modPath, gamePath);
+            btnMod.Enabled = true;
+            MessageBox.Show($"è‡´å‘½å…¬å¸MODåŒ… \"{lstMods.SelectedItem}\" å®‰è£…æˆåŠŸï¼", "æˆåŠŸ", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (game == null)
+            if (gamePath == null)
             {
                 return;
             }
-            Process.Start("explorer.exe", game.LaunchString);
+            Process.Start("explorer.exe", "steam://rungameid/1966720");
             btnStart.Enabled = false;
-            var timer = new System.Windows.Forms.Timer();
+            var timer = new Timer();
             timer.Interval = 500;
             timer.Tick += TimerButtonStartClick_Tick;
             timer.Start();
         }
 
-        private void TimerButtonStartClick_Tick(object? sender, EventArgs e)
+        private void TimerButtonStartClick_Tick(object sender, EventArgs e)
         {
             btnStart.Enabled = true;
         }
