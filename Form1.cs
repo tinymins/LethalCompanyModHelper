@@ -116,10 +116,6 @@ namespace LethalCompanyModHelper
                 foreach (dynamic item in volvoLibraryFolders.Value)
                 {
                     dynamic itemValue = item.Value;
-                    if (itemValue.apps == null || itemValue.apps[gameId] == null)
-                    {
-                        continue;
-                    }
                     var appManifestPath = Path.Combine(itemValue.path.Value, "steamapps", $"appmanifest_{gameId}.acf");
                     if (!File.Exists(appManifestPath))
                     {
