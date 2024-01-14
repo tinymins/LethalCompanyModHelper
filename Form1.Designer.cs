@@ -33,6 +33,8 @@
             this.btnMod = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.linkHomepage = new System.Windows.Forms.LinkLabel();
+            this.linkOpenGamePath = new System.Windows.Forms.LinkLabel();
+            this.linkOpenSavePath = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // lstMods
@@ -40,10 +42,10 @@
             this.lstMods.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lstMods.FormattingEnabled = true;
             this.lstMods.ItemHeight = 27;
-            this.lstMods.Location = new System.Drawing.Point(11, 34);
+            this.lstMods.Location = new System.Drawing.Point(10, 34);
             this.lstMods.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstMods.Name = "lstMods";
-            this.lstMods.Size = new System.Drawing.Size(514, 436);
+            this.lstMods.Size = new System.Drawing.Size(514, 409);
             this.lstMods.TabIndex = 0;
             // 
             // btnMod
@@ -61,7 +63,7 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStart.Location = new System.Drawing.Point(271, 478);
+            this.btnStart.Location = new System.Drawing.Point(272, 478);
             this.btnStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(254, 82);
@@ -74,7 +76,7 @@
             // 
             this.linkHomepage.AutoSize = true;
             this.linkHomepage.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.linkHomepage.Location = new System.Drawing.Point(433, 5);
+            this.linkHomepage.Location = new System.Drawing.Point(434, 5);
             this.linkHomepage.Name = "linkHomepage";
             this.linkHomepage.Size = new System.Drawing.Size(92, 27);
             this.linkHomepage.TabIndex = 3;
@@ -82,11 +84,39 @@
             this.linkHomepage.Text = "关于作者";
             this.linkHomepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkHomepage_LinkClicked);
             // 
+            // linkOpenGamePath
+            // 
+            this.linkOpenGamePath.AutoSize = true;
+            this.linkOpenGamePath.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkOpenGamePath.Location = new System.Drawing.Point(6, 5);
+            this.linkOpenGamePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkOpenGamePath.Name = "linkOpenGamePath";
+            this.linkOpenGamePath.Size = new System.Drawing.Size(112, 27);
+            this.linkOpenGamePath.TabIndex = 4;
+            this.linkOpenGamePath.TabStop = true;
+            this.linkOpenGamePath.Text = "游戏文件夹";
+            this.linkOpenGamePath.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkOpenGamePath_LinkClicked);
+            // 
+            // linkOpenSavePath
+            // 
+            this.linkOpenSavePath.AutoSize = true;
+            this.linkOpenSavePath.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkOpenSavePath.Location = new System.Drawing.Point(114, 5);
+            this.linkOpenSavePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkOpenSavePath.Name = "linkOpenSavePath";
+            this.linkOpenSavePath.Size = new System.Drawing.Size(112, 27);
+            this.linkOpenSavePath.TabIndex = 5;
+            this.linkOpenSavePath.TabStop = true;
+            this.linkOpenSavePath.Text = "存档文件夹";
+            this.linkOpenSavePath.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkOpenSavePath_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 583);
+            this.Controls.Add(this.linkOpenSavePath);
+            this.Controls.Add(this.linkOpenGamePath);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnMod);
             this.Controls.Add(this.linkHomepage);
@@ -109,5 +139,7 @@
         private System.Windows.Forms.LinkLabel linkHomepage;
         private System.Windows.Forms.Button btnMod;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.LinkLabel linkOpenGamePath;
+        private System.Windows.Forms.LinkLabel linkOpenSavePath;
     }
 }

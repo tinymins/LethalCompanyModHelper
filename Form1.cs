@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace LethalCompanyModHelper
@@ -19,6 +20,26 @@ namespace LethalCompanyModHelper
         private string gamePath = null;
         private readonly List<string> mods = new List<string> { };
         private readonly List<string> deleteDirectories = new List<string> { "_state", "BepInEx" };
+
+        string GetKnownFolderPath(Guid knownFolderId)
+        {
+            IntPtr pszPath = IntPtr.Zero;
+            try
+            {
+                int hr = SHGetKnownFolderPath(knownFolderId, 0, IntPtr.Zero, out pszPath);
+                if (hr >= 0)
+                    return Marshal.PtrToStringAuto(pszPath);
+                throw Marshal.GetExceptionForHR(hr);
+            }
+            finally
+            {
+                if (pszPath != IntPtr.Zero)
+                    Marshal.FreeCoTaskMem(pszPath);
+            }
+        }
+
+        [DllImport("shell32.dll")]
+        static extern int SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)] Guid rfid, uint dwFlags, IntPtr hToken, out IntPtr pszPath);
 
         public static void CopyDirectory(string sourceDir, string targetDir)
         {
@@ -121,7 +142,6 @@ namespace LethalCompanyModHelper
             return null;
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
             // 获取游戏
@@ -221,6 +241,19 @@ namespace LethalCompanyModHelper
         private void linkHomepage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("explorer.exe", "https://j3cx.com/feedback");
+        }
+
+        private void linkOpenGamePath_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("explorer.exe", gamePath);
+        }
+
+        private void linkOpenSavePath_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Guid localLowId = new Guid("A520A1A4-1780-4FF6-BD18-167343C5AF16");
+            string appDataPath = GetKnownFolderPath(localLowId);
+            string targetPath = Path.Combine(appDataPath, "ZeekerssRBLX", "Lethal Company");
+            Process.Start("explorer.exe", targetPath);
         }
     }
 }
