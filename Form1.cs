@@ -1,4 +1,5 @@
-﻿using Narod.SteamGameFinder;
+﻿using Gameloop.Vdf;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,9 +15,11 @@ namespace LethalCompanyModHelper
             InitializeComponent();
         }
 
+        private static readonly string gameId = "1966720";
         private string gamePath = null;
-        private List<string> mods = new List<string> { };
-        private List<string> deleteDirectories = new List<string> { "_state", "BepInEx" };
+        private readonly List<string> mods = new List<string> { };
+        private readonly List<string> deleteDirectories = new List<string> { "_state", "BepInEx" };
+
         public static void CopyDirectory(string sourceDir, string targetDir)
         {
             // Check if the target directory exists, if not, create it.
@@ -42,16 +45,87 @@ namespace LethalCompanyModHelper
             }
         }
 
+        private string GetSteamInstallPath()
+        {
+            try
+            {
+                RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Valve\Steam");
+                if (key != null)
+                {
+                    string steamInstallPath = (string)key.GetValue("InstallPath");
+                    key.Close();
+
+                    if (!string.IsNullOrEmpty(steamInstallPath))
+                    {
+                        return steamInstallPath;
+                    }
+                }
+
+                key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Valve\Steam");
+                if (key != null)
+                {
+                    string steamInstallPath = (string)key.GetValue("InstallPath");
+                    key.Close();
+
+                    if (!string.IsNullOrEmpty(steamInstallPath))
+                    {
+                        return steamInstallPath;
+                    }
+                }
+            }
+            catch { }
+            return null;
+        }
+
+        private string GetGameInstallPath()
+        {
+            try
+            {
+                var steamInstallPath = GetSteamInstallPath();
+                if (string.IsNullOrEmpty(steamInstallPath))
+                {
+                    return null;
+                }
+                var libraryFoldersVdfPath = Path.Combine(steamInstallPath, "config", "libraryfolders.vdf");
+                if (!File.Exists(libraryFoldersVdfPath))
+                {
+                    return null;
+                }
+                var volvoLibraryFolders = VdfConvert.Deserialize(File.ReadAllText(libraryFoldersVdfPath));
+                foreach (dynamic item in volvoLibraryFolders.Value)
+                {
+                    dynamic itemValue = item.Value;
+                    if (itemValue.apps == null || itemValue.apps[gameId] == null)
+                    {
+                        continue;
+                    }
+                    var appManifestPath = Path.Combine(itemValue.path.Value, "steamapps", $"appmanifest_{gameId}.acf");
+                    if (!File.Exists(appManifestPath))
+                    {
+                        continue;
+                    }
+                    var volvoManifest = VdfConvert.Deserialize(File.ReadAllText(appManifestPath));
+                    var gameInstallDir = volvoManifest.Value.installdir;
+                    if (gameInstallDir == null)
+                    {
+                        continue;
+                    }
+                    var gameInstallPath = Path.Combine(itemValue.path.Value, "steamapps", "common", gameInstallDir.Value);
+                    if (Directory.Exists(gameInstallPath))
+                    {
+                        return gameInstallPath;
+                    }
+                }
+            }
+            catch { }
+            return null;
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             // 获取游戏
-            SteamGameLocator steamGameLocator = new SteamGameLocator();
-            try
-            {
-                var game = steamGameLocator.getGameInfoByFolder("Lethal Company");
-                gamePath = game.steamGameLocation;
-            } catch { }
-
+            gamePath = GetGameInstallPath();
             if (gamePath == null || gamePath.Equals(""))
             {
                 gamePath = null;
@@ -131,7 +205,7 @@ namespace LethalCompanyModHelper
             {
                 return;
             }
-            Process.Start("explorer.exe", "steam://rungameid/1966720");
+            Process.Start("explorer.exe", $"steam://rungameid/{gameId}");
             btnStart.Enabled = false;
             var timer = new Timer();
             timer.Interval = 500;

@@ -1,0 +1,7 @@
+打开致命公司MOD安装器后：
+1. 选择要安装的MOD，默认已自动选中第一个。
+2. 点击“安装MOD”，即可自动安装。
+3. 再点击“开始游戏”，即可打开游戏。
+
+如果打不开，复制下面这个地址用浏览器下载，下载安装.NET运行时：
+https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net48-offline-installer
