@@ -236,7 +236,7 @@ namespace LethalCompanyModHelper
 
         private void linkHomepage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("explorer.exe", "https://j3cx.com/feedback");
+            Process.Start("explorer.exe", "https://zhaiyiming.com/feedback");
         }
 
         private void linkOpenGamePath_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
