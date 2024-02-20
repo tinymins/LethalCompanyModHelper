@@ -1,6 +1,6 @@
 ﻿namespace LethalCompanyModHelper
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.lstMods = new System.Windows.Forms.ListBox();
             this.btnMod = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
@@ -150,14 +150,14 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // Form1
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 871);
+            this.Controls.Add(this.txtAbout);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.txtAbout);
             this.Controls.Add(this.linkOpenSavePath);
             this.Controls.Add(this.linkOpenGamePath);
             this.Controls.Add(this.btnStart);
@@ -167,7 +167,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "致命公司MOD安装器 --by@茗伊";
             this.Load += new System.EventHandler(this.Form1_Load);

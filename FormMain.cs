@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace LethalCompanyModHelper
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
         }
@@ -20,8 +20,7 @@ namespace LethalCompanyModHelper
         private string gamePath = null;
         private string aboutURL = null;
         private string updateURL = null;
-        private readonly List<string> mods = new List<string> { };
-        private readonly List<string> deleteDirectories = new List<string> { "_state", "BepInEx" };
+        private readonly List<string> modPaths = new List<string> { };
 
         string GetKnownFolderPath(Guid knownFolderId)
         {
@@ -46,31 +45,6 @@ namespace LethalCompanyModHelper
         private bool IsValidURL(string url)
         {
             return !string.IsNullOrWhiteSpace(url) && (url.StartsWith("http://") || url.StartsWith("https://"));
-        }
-
-        public static void CopyDirectory(string sourceDir, string targetDir)
-        {
-            // Check if the target directory exists, if not, create it.
-            if (!Directory.Exists(targetDir))
-            {
-                Directory.CreateDirectory(targetDir);
-            }
-
-            // Copy each file into the new directory.
-            foreach (string file in Directory.GetFiles(sourceDir))
-            {
-                string fileName = Path.GetFileName(file);
-                string destFile = Path.Combine(targetDir, fileName);
-                File.Copy(file, destFile, true); // true to overwrite
-            }
-
-            // Copy each subdirectory using recursion.
-            foreach (string dir in Directory.GetDirectories(sourceDir))
-            {
-                string dirName = Path.GetFileName(dir);
-                string destDir = Path.Combine(targetDir, dirName);
-                CopyDirectory(dir, destDir);
-            }
         }
 
         private string GetSteamInstallPath()
@@ -167,11 +141,11 @@ namespace LethalCompanyModHelper
             {
                 if (Directory.Exists(Path.Combine(directory, "Base", "BepInEx")))
                 {
-                    mods.Add(directory);
+                    modPaths.Add(directory);
                 }
             }
             lstMods.Items.Clear();
-            foreach (var mod in mods)
+            foreach (var mod in modPaths)
             {
                 string item = Path.GetFileName(mod);
                 if (item != null)
@@ -198,28 +172,9 @@ namespace LethalCompanyModHelper
                 MessageBox.Show("找不到有效的MOD文件夹！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            // 获取名为 "Lethal Company" 的进程是否存在
-            Process[] processes = Process.GetProcessesByName("Lethal Company");
-            if (processes.Length > 0)
-            {
-                MessageBox.Show("Lethal Company.exe 进程存在，请先结束游戏！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
-            // 开始安装MOD
-            btnMod.Enabled = false;
-            foreach (var dirName in deleteDirectories)
-            {
-                var dirPath = Path.Combine(gamePath, dirName);
-                if (Directory.Exists(dirPath))
-                {
-                    Directory.Delete(dirPath, true);
-                }
-            }
-            var modPath = mods[lstMods.SelectedIndex];
-            CopyDirectory(modPath, gamePath);
-            btnMod.Enabled = true;
-            MessageBox.Show($"致命公司MOD包 \"{lstMods.SelectedItem}\" 安装成功！", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            FormInstall formInstall = new FormInstall(gamePath, modPaths[lstMods.SelectedIndex]);
+            formInstall.ShowDialog();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -261,7 +216,7 @@ namespace LethalCompanyModHelper
 
         private void lstMods_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string modName = mods[lstMods.SelectedIndex];
+            string modName = modPaths[lstMods.SelectedIndex];
 
             string readme = "";
             string readmeFilePath = Path.Combine(modName, "README.txt");
