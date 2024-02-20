@@ -18,6 +18,8 @@ namespace LethalCompanyModHelper
 
         private static readonly string gameId = "1966720";
         private string gamePath = null;
+        private string aboutURL = null;
+        private string updateURL = null;
         private readonly List<string> mods = new List<string> { };
         private readonly List<string> deleteDirectories = new List<string> { "_state", "BepInEx" };
 
@@ -40,6 +42,11 @@ namespace LethalCompanyModHelper
 
         [DllImport("shell32.dll")]
         static extern int SHGetKnownFolderPath([MarshalAs(UnmanagedType.LPStruct)] Guid rfid, uint dwFlags, IntPtr hToken, out IntPtr pszPath);
+
+        private bool IsValidURL(string url)
+        {
+            return !string.IsNullOrWhiteSpace(url) && (url.StartsWith("http://") || url.StartsWith("https://"));
+        }
 
         public static void CopyDirectory(string sourceDir, string targetDir)
         {
@@ -158,7 +165,7 @@ namespace LethalCompanyModHelper
             var directories = Directory.GetDirectories(exePath);
             foreach (var directory in directories)
             {
-                if (Directory.Exists(Path.Combine(directory, "BepInEx")))
+                if (Directory.Exists(Path.Combine(directory, "Base", "BepInEx")))
                 {
                     mods.Add(directory);
                 }
@@ -250,6 +257,45 @@ namespace LethalCompanyModHelper
             string appDataPath = GetKnownFolderPath(localLowId);
             string targetPath = Path.Combine(appDataPath, "ZeekerssRBLX", "Lethal Company");
             Process.Start("explorer.exe", targetPath);
+        }
+
+        private void lstMods_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string modName = mods[lstMods.SelectedIndex];
+
+            string readme = "";
+            string readmeFilePath = Path.Combine(modName, "README.txt");
+            if (File.Exists(readmeFilePath))
+            {
+                readme = File.ReadAllText(readmeFilePath);
+            }
+            txtAbout.Text = readme;
+
+            string aboutFilePath = Path.Combine(modName, "ABOUT.txt");
+            aboutURL = File.Exists(aboutFilePath) ? File.ReadAllText(aboutFilePath) : null;
+            btnAbout.Enabled = IsValidURL(aboutURL);
+
+            string updateFilePath = Path.Combine(modName, "UPDATE.txt");
+            updateURL = File.Exists(updateFilePath) ? File.ReadAllText(updateFilePath) : null;
+            btnUpdate.Enabled = IsValidURL(updateURL);
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e)
+        {
+            if (!IsValidURL(aboutURL))
+            {
+                return;
+            }
+            Process.Start("explorer.exe", aboutURL);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (!IsValidURL(updateURL))
+            {
+                return;
+            }
+            Process.Start("explorer.exe", updateURL);
         }
     }
 }
