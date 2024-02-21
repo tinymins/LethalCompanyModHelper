@@ -159,4 +159,22 @@
   <data name="FromInstall/StartInstall" xml:space="preserve">
     <value>Start Install</value>
   </data>
+  <data name="FormInstall/Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="FormInstall/InstalledOptionalModPacks:" xml:space="preserve">
+    <value>Installed optional mod packs:</value>
+  </data>
+  <data name="FormInstall/InstallSuccess!" xml:space="preserve">
+    <value>successfully installed!</value>
+  </data>
+  <data name="FormInstall/LethalCompanyModPack" xml:space="preserve">
+    <value>Lethal Company mod pack</value>
+  </data>
+  <data name="FormInstall/ProcessExistsError" xml:space="preserve">
+    <value>Lethal Company.exe process running, please exit game first!</value>
+  </data>
+  <data name="FormInstall/Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
 </root>

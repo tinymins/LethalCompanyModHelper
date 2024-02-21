@@ -89,7 +89,7 @@ namespace LethalCompanyModHelper
             Process[] processes = Process.GetProcessesByName("Lethal Company");
             if (processes.Length > 0)
             {
-                MessageBox.Show("Lethal Company.exe 进程存在，请先结束游戏！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Program.GetI18nString("FormInstall/ProcessExistsError"), Program.GetI18nString("FormInstall/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -112,17 +112,17 @@ namespace LethalCompanyModHelper
             btnInstall.Enabled = true;
 
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"致命公司MOD包 \"{Path.GetFileName(modPath)}\" 安装成功！");
+            sb.AppendLine($"{Program.GetI18nString("FormInstall/LethalCompanyModPack")} \"{Path.GetFileName(modPath)}\" {Program.GetI18nString("FormInstall/InstallSuccess!")}");
             if (clbOptional.CheckedItems.Count > 0)
             {
                 sb.AppendLine("");
-                sb.AppendLine("已安装可选功能包：");
+                sb.AppendLine(Program.GetI18nString("FormInstall/InstalledOptionalModPacks:"));
                 foreach (var item in clbOptional.CheckedItems)
                 {
                     sb.AppendLine(item.ToString());
                 }
             }
-            MessageBox.Show(sb.ToString(), "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(sb.ToString(), Program.GetI18nString("FormInstall/Success"), MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             this.Close();
         }

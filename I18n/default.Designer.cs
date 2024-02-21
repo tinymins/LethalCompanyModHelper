@@ -61,6 +61,60 @@ namespace LethalCompanyModHelper.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string FormInstall_Error {
+            get {
+                return ResourceManager.GetString("FormInstall/Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installed optional mod packs:.
+        /// </summary>
+        internal static string FormInstall_InstalledOptionalModPacks_ {
+            get {
+                return ResourceManager.GetString("FormInstall/InstalledOptionalModPacks:", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to successfully installed!.
+        /// </summary>
+        internal static string FormInstall_InstallSuccess_ {
+            get {
+                return ResourceManager.GetString("FormInstall/InstallSuccess!", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lethal Company mod pack.
+        /// </summary>
+        internal static string FormInstall_LethalCompanyModPack {
+            get {
+                return ResourceManager.GetString("FormInstall/LethalCompanyModPack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lethal Company.exe process running, please exit game first!.
+        /// </summary>
+        internal static string FormInstall_ProcessExistsError {
+            get {
+                return ResourceManager.GetString("FormInstall/ProcessExistsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success.
+        /// </summary>
+        internal static string FormInstall_Success {
+            get {
+                return ResourceManager.GetString("FormInstall/Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About Author.
         /// </summary>
         internal static string FormMain_AboutModAuthor {
@@ -138,6 +192,15 @@ namespace LethalCompanyModHelper.I18n {
         internal static string FormMain_InstallMod {
             get {
                 return ResourceManager.GetString("FormMain/InstallMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot find any valid mod packs!.
+        /// </summary>
+        internal static string FormMain_ModFolderNotFoundError {
+            get {
+                return ResourceManager.GetString("FormMain/ModFolderNotFoundError", resourceCulture);
             }
         }
         

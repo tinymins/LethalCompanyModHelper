@@ -159,4 +159,22 @@
   <data name="FromInstall/StartInstall" xml:space="preserve">
     <value>开始安装</value>
   </data>
+  <data name="FormInstall/Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="FormInstall/InstalledOptionalModPacks:" xml:space="preserve">
+    <value>已安装可选功能包：</value>
+  </data>
+  <data name="FormInstall/InstallSuccess!" xml:space="preserve">
+    <value>安装成功！</value>
+  </data>
+  <data name="FormInstall/LethalCompanyModPack" xml:space="preserve">
+    <value>致命公司MOD包</value>
+  </data>
+  <data name="FormInstall/ProcessExistsError" xml:space="preserve">
+    <value>Lethal Company.exe 进程存在，请先结束游戏！</value>
+  </data>
+  <data name="FormInstall/Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
 </root>
