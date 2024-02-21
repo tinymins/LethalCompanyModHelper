@@ -125,6 +125,7 @@ namespace LethalCompanyModHelper
             this.Text = Program.GetI18nString("FormMain/FormTitle");
             linkOpenGamePath.Text = Program.GetI18nString("FormMain/GamePath");
             linkOpenSavePath.Text = Program.GetI18nString("FormMain/GameSavePath");
+            linkModPath.Text = Program.GetI18nString("FormMain/ModPath");
             linkHomepage.Text = Program.GetI18nString("FormMain/AboutSoftwareAuthor");
             btnMod.Text = Program.GetI18nString("FormMain/InstallMod");
             btnStart.Text = Program.GetI18nString("FormMain/StartGame");
@@ -261,6 +262,11 @@ namespace LethalCompanyModHelper
                 return;
             }
             Process.Start("explorer.exe", updateURL);
+        }
+
+        private void linkModPath_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("explorer.exe", AppDomain.CurrentDomain.BaseDirectory);
         }
     }
 }

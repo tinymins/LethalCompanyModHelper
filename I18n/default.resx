@@ -144,6 +144,9 @@
   <data name="FormMain/GameSavePath" xml:space="preserve">
     <value>Save Folder</value>
   </data>
+  <data name="FormMain/ModPath" xml:space="preserve">
+    <value>MOD Folder</value>
+  </data>
   <data name="FormMain/InstallMod" xml:space="preserve">
     <value>Install MOD</value>
   </data>

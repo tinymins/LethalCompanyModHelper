@@ -144,6 +144,9 @@
   <data name="FormMain/GameSavePath" xml:space="preserve">
     <value>存档文件夹</value>
   </data>
+  <data name="FormMain/ModPath" xml:space="preserve">
+    <value>MOD文件夹</value>
+  </data>
   <data name="FormMain/InstallMod" xml:space="preserve">
     <value>安装 MOD</value>
   </data>

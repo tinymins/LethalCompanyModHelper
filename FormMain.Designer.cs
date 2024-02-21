@@ -40,6 +40,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.linkModPath = new System.Windows.Forms.LinkLabel();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -84,7 +85,7 @@
             // 
             this.linkHomepage.AutoSize = true;
             this.linkHomepage.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.linkHomepage.Location = new System.Drawing.Point(437, 0);
+            this.linkHomepage.Location = new System.Drawing.Point(262, 0);
             this.linkHomepage.Name = "linkHomepage";
             this.linkHomepage.Size = new System.Drawing.Size(71, 27);
             this.linkHomepage.TabIndex = 3;
@@ -158,19 +159,33 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.linkOpenGamePath);
             this.flowLayoutPanel1.Controls.Add(this.linkOpenSavePath);
+            this.flowLayoutPanel1.Controls.Add(this.linkModPath);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(505, 27);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(681, 27);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.linkHomepage);
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(515, 5);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(690, 5);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(511, 27);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(336, 27);
             this.flowLayoutPanel2.TabIndex = 10;
+            // 
+            // linkModPath
+            // 
+            this.linkModPath.AutoSize = true;
+            this.linkModPath.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkModPath.Location = new System.Drawing.Point(279, 0);
+            this.linkModPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkModPath.Name = "linkModPath";
+            this.linkModPath.Size = new System.Drawing.Size(130, 27);
+            this.linkModPath.TabIndex = 6;
+            this.linkModPath.TabStop = true;
+            this.linkModPath.Text = "MOD Folder";
+            this.linkModPath.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkModPath_LinkClicked);
             // 
             // FormMain
             // 
@@ -214,5 +229,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.LinkLabel linkModPath;
     }
 }
