@@ -122,21 +122,21 @@ namespace LethalCompanyModHelper
         private void FormMain_Load(object sender, EventArgs e)
         {
             // Initialize i18n
-            this.Text = Properties.I18n.ResourceManager.GetString("FormMain/FormTitle");
-            linkOpenGamePath.Text = Properties.I18n.ResourceManager.GetString("FormMain/GamePath");
-            linkOpenSavePath.Text = Properties.I18n.ResourceManager.GetString("FormMain/GameSavePath");
-            linkHomepage.Text = Properties.I18n.ResourceManager.GetString("FormMain/AboutSoftwareAuthor");
-            btnMod.Text = Properties.I18n.ResourceManager.GetString("FormMain/InstallMod");
-            btnStart.Text = Properties.I18n.ResourceManager.GetString("FormMain/StartGame");
-            btnAbout.Text = Properties.I18n.ResourceManager.GetString("FormMain/AboutModAuthor");
-            btnUpdate.Text = Properties.I18n.ResourceManager.GetString("FormMain/CheckModUpdate");
+            this.Text = Program.GetI18nString("FormMain/FormTitle");
+            linkOpenGamePath.Text = Program.GetI18nString("FormMain/GamePath");
+            linkOpenSavePath.Text = Program.GetI18nString("FormMain/GameSavePath");
+            linkHomepage.Text = Program.GetI18nString("FormMain/AboutSoftwareAuthor");
+            btnMod.Text = Program.GetI18nString("FormMain/InstallMod");
+            btnStart.Text = Program.GetI18nString("FormMain/StartGame");
+            btnAbout.Text = Program.GetI18nString("FormMain/AboutModAuthor");
+            btnUpdate.Text = Program.GetI18nString("FormMain/CheckModUpdate");
 
             // 获取游戏
             gamePath = GetGameInstallPath();
             if (gamePath == null || gamePath.Equals(""))
             {
                 gamePath = null;
-                MessageBox.Show(Properties.I18n.ResourceManager.GetString("FormMain/GamePathNotFoundError"), Properties.I18n.ResourceManager.GetString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Program.GetI18nString("FormMain/GamePathNotFoundError"), Program.GetI18nString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -174,12 +174,12 @@ namespace LethalCompanyModHelper
         {
             if (gamePath == null)
             {
-                MessageBox.Show(Properties.I18n.ResourceManager.GetString("FormMain/GamePathNotFoundError"), Properties.I18n.ResourceManager.GetString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Program.GetI18nString("FormMain/GamePathNotFoundError"), Program.GetI18nString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (lstMods.SelectedIndex == -1)
             {
-                MessageBox.Show(Properties.I18n.ResourceManager.GetString("FormMain/ModFolderNotFoundError"), Properties.I18n.ResourceManager.GetString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Program.GetI18nString("FormMain/ModFolderNotFoundError"), Program.GetI18nString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

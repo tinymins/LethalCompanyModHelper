@@ -138,6 +138,9 @@
   <data name="FormMain/GamePathNotFoundError" xml:space="preserve">
     <value>未找到致命公司安装路径！</value>
   </data>
+  <data name="FormMain/ModFolderNotFoundError" xml:space="preserve">
+    <value>找不到有效的MOD文件夹！</value>
+  </data>
   <data name="FormMain/GameSavePath" xml:space="preserve">
     <value>存档文件夹</value>
   </data>

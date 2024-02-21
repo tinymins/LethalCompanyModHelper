@@ -138,6 +138,9 @@
   <data name="FormMain/GamePathNotFoundError" xml:space="preserve">
     <value>Lethal Company Game Path Not Found!</value>
   </data>
+  <data name="FormMain/ModFolderNotFoundError" xml:space="preserve">
+    <value>Cannot find any valid mod packs!</value>
+  </data>
   <data name="FormMain/GameSavePath" xml:space="preserve">
     <value>Save Folder</value>
   </data>
