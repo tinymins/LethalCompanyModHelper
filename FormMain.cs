@@ -119,14 +119,24 @@ namespace LethalCompanyModHelper
             return null;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e)
         {
+            // Initialize i18n
+            this.Text = Properties.I18n.ResourceManager.GetString("FormMain/FormTitle");
+            linkOpenGamePath.Text = Properties.I18n.ResourceManager.GetString("FormMain/GamePath");
+            linkOpenSavePath.Text = Properties.I18n.ResourceManager.GetString("FormMain/GameSavePath");
+            linkHomepage.Text = Properties.I18n.ResourceManager.GetString("FormMain/AboutSoftwareAuthor");
+            btnMod.Text = Properties.I18n.ResourceManager.GetString("FormMain/InstallMod");
+            btnStart.Text = Properties.I18n.ResourceManager.GetString("FormMain/StartGame");
+            btnAbout.Text = Properties.I18n.ResourceManager.GetString("FormMain/AboutModAuthor");
+            btnUpdate.Text = Properties.I18n.ResourceManager.GetString("FormMain/CheckModUpdate");
+
             // 获取游戏
             gamePath = GetGameInstallPath();
             if (gamePath == null || gamePath.Equals(""))
             {
                 gamePath = null;
-                MessageBox.Show("未找到致命公司安装路径！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.I18n.ResourceManager.GetString("FormMain/GamePathNotFoundError"), Properties.I18n.ResourceManager.GetString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -164,12 +174,12 @@ namespace LethalCompanyModHelper
         {
             if (gamePath == null)
             {
-                MessageBox.Show("未找到致命公司安装路径！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.I18n.ResourceManager.GetString("FormMain/GamePathNotFoundError"), Properties.I18n.ResourceManager.GetString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (lstMods.SelectedIndex == -1)
             {
-                MessageBox.Show("找不到有效的MOD文件夹！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Properties.I18n.ResourceManager.GetString("FormMain/ModFolderNotFoundError"), Properties.I18n.ResourceManager.GetString("FormMain/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

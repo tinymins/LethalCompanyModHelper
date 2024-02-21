@@ -48,6 +48,11 @@ namespace LethalCompanyModHelper
 
         private void FormInstall_Load(object sender, EventArgs e)
         {
+            // Initialize i18n
+            this.Text = Properties.I18n.ResourceManager.GetString("FromInstall/FormTitle");
+            lblSelectOptional.Text = Properties.I18n.ResourceManager.GetString("FromInstall/PleaseSelectOptionalModPacks:");
+            btnInstall.Text = Properties.I18n.ResourceManager.GetString("FromInstall/StartInstall");
+
             // 获取可选包列表
             var optionalPath = Path.Combine(modPath, "Optional");
 

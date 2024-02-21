@@ -38,6 +38,10 @@
             this.txtAbout = new System.Windows.Forms.TextBox();
             this.btnAbout = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstMods
@@ -60,7 +64,7 @@
             this.btnMod.Name = "btnMod";
             this.btnMod.Size = new System.Drawing.Size(245, 82);
             this.btnMod.TabIndex = 1;
-            this.btnMod.Text = "安装 MOD";
+            this.btnMod.Text = "Install MOD";
             this.btnMod.UseVisualStyleBackColor = true;
             this.btnMod.Click += new System.EventHandler(this.btnMod_Click);
             // 
@@ -72,7 +76,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(245, 82);
             this.btnStart.TabIndex = 2;
-            this.btnStart.Text = "开始游戏";
+            this.btnStart.Text = "Start Game";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -80,38 +84,38 @@
             // 
             this.linkHomepage.AutoSize = true;
             this.linkHomepage.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.linkHomepage.Location = new System.Drawing.Point(928, 5);
+            this.linkHomepage.Location = new System.Drawing.Point(437, 0);
             this.linkHomepage.Name = "linkHomepage";
-            this.linkHomepage.Size = new System.Drawing.Size(92, 27);
+            this.linkHomepage.Size = new System.Drawing.Size(71, 27);
             this.linkHomepage.TabIndex = 3;
             this.linkHomepage.TabStop = true;
-            this.linkHomepage.Text = "软件作者";
+            this.linkHomepage.Text = "About";
             this.linkHomepage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkHomepage_LinkClicked);
             // 
             // linkOpenGamePath
             // 
             this.linkOpenGamePath.AutoSize = true;
             this.linkOpenGamePath.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkOpenGamePath.Location = new System.Drawing.Point(6, 5);
+            this.linkOpenGamePath.Location = new System.Drawing.Point(4, 0);
             this.linkOpenGamePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkOpenGamePath.Name = "linkOpenGamePath";
-            this.linkOpenGamePath.Size = new System.Drawing.Size(112, 27);
+            this.linkOpenGamePath.Size = new System.Drawing.Size(135, 27);
             this.linkOpenGamePath.TabIndex = 4;
             this.linkOpenGamePath.TabStop = true;
-            this.linkOpenGamePath.Text = "游戏文件夹";
+            this.linkOpenGamePath.Text = "Game Folder";
             this.linkOpenGamePath.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkOpenGamePath_LinkClicked);
             // 
             // linkOpenSavePath
             // 
             this.linkOpenSavePath.AutoSize = true;
             this.linkOpenSavePath.Font = new System.Drawing.Font("Microsoft YaHei UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkOpenSavePath.Location = new System.Drawing.Point(114, 5);
+            this.linkOpenSavePath.Location = new System.Drawing.Point(147, 0);
             this.linkOpenSavePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkOpenSavePath.Name = "linkOpenSavePath";
-            this.linkOpenSavePath.Size = new System.Drawing.Size(112, 27);
+            this.linkOpenSavePath.Size = new System.Drawing.Size(124, 27);
             this.linkOpenSavePath.TabIndex = 5;
             this.linkOpenSavePath.TabStop = true;
-            this.linkOpenSavePath.Text = "存档文件夹";
+            this.linkOpenSavePath.Text = "Save Folder";
             this.linkOpenSavePath.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkOpenSavePath_LinkClicked);
             // 
             // txtAbout
@@ -134,7 +138,7 @@
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(245, 82);
             this.btnAbout.TabIndex = 7;
-            this.btnAbout.Text = "关于作者";
+            this.btnAbout.Text = "About Author";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
@@ -146,31 +150,52 @@
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(245, 82);
             this.btnUpdate.TabIndex = 8;
-            this.btnUpdate.Text = "检查更新";
+            this.btnUpdate.Text = "Check Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.linkOpenGamePath);
+            this.flowLayoutPanel1.Controls.Add(this.linkOpenSavePath);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 5);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(505, 27);
+            this.flowLayoutPanel1.TabIndex = 9;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.linkHomepage);
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(515, 5);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(511, 27);
+            this.flowLayoutPanel2.TabIndex = 10;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1032, 871);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.txtAbout);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.linkOpenSavePath);
-            this.Controls.Add(this.linkOpenGamePath);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnMod);
-            this.Controls.Add(this.linkHomepage);
             this.Controls.Add(this.lstMods);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "致命公司MOD安装器 --by@茗伊";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Lethal Company Mod Helper -- by TinyMins";
+            this.Load += new System.EventHandler(this.FormMain_Load);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +212,7 @@
         private System.Windows.Forms.TextBox txtAbout;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }
