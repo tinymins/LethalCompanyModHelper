@@ -55,7 +55,11 @@ namespace LethalCompanyModHelperArchiver
             Stream exeStream = assembly.GetManifestResourceStream("LethalCompanyModHelperArchiver.Resources.7zr.exe");
 
             // Write the resources to temporary files
-            string tempDir = Path.Combine(Path.GetTempPath(), "LethalCompanyModHelperArchiver");
+            Random random = new Random();
+            byte[] tempFileNameBuffer = new byte[4];
+            random.NextBytes(tempFileNameBuffer);
+            string tempFileNameHex = BitConverter.ToString(tempFileNameBuffer).Replace("-", "");
+            string tempDir = Path.Combine(Path.GetTempPath(), $"LethalCompanyModHelperArchiver{tempFileNameHex}");
             Directory.CreateDirectory(tempDir);
 
             string sfxPath = Path.Combine(tempDir, "7zSD.sfx");
@@ -126,6 +130,7 @@ namespace LethalCompanyModHelperArchiver
             File.Delete(configPath);
             File.Delete(exePath);
             File.Delete("archive.7z");
+            Directory.Delete(tempDir);
 
             MessageBox.Show(Program.GetI18nString("FormMain/CreateArchiveSuccess"));
             Process.Start("explorer.exe", $"/select,\"{targetFile}\"");
