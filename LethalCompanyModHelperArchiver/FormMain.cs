@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,9 +11,22 @@ namespace LethalCompanyModHelperArchiver
 {
     public partial class FormMain : Form
     {
+        private string[] installerFiles = { "LethalCompanyModHelper.exe", "Gameloop.Vdf.dll" };
+        private string targetFile = "installer.exe";
+        private string sfxPath = "";
+        private string configPath = "";
+        private string exePath = "";
+        private string tempDir = "";
+        private Process process;
+
         public FormMain()
         {
             InitializeComponent();
+        }
+
+        private void Log(string str)
+        {
+            txtLogs.AppendText(str);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -26,11 +35,16 @@ namespace LethalCompanyModHelperArchiver
             btnStart.Text = Program.GetI18nString("FormMain/BtnStartText");
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string[] installerFiles = { "LethalCompanyModHelper.exe", "Gameloop.Vdf.dll" };
-            var targetFile = "installer.exe";
+            if (process != null && !process.HasExited)
+            {
+                process.Kill();
+            }
+        }
 
+        private async void StartMake()
+        {
             // Check if installer file exists
             foreach (var installerExeFile in installerFiles)
             {
@@ -59,12 +73,12 @@ namespace LethalCompanyModHelperArchiver
             byte[] tempFileNameBuffer = new byte[4];
             random.NextBytes(tempFileNameBuffer);
             string tempFileNameHex = BitConverter.ToString(tempFileNameBuffer).Replace("-", "");
-            string tempDir = Path.Combine(Path.GetTempPath(), $"LethalCompanyModHelperArchiver{tempFileNameHex}");
-            Directory.CreateDirectory(tempDir);
+            tempDir = Path.Combine(Path.GetTempPath(), $"LethalCompanyModHelperArchiver{tempFileNameHex}");
+            sfxPath = Path.Combine(tempDir, "7zSD.sfx");
+            configPath = Path.Combine(tempDir, "7z-config.txt");
+            exePath = Path.Combine(tempDir, "7zr.exe");
 
-            string sfxPath = Path.Combine(tempDir, "7zSD.sfx");
-            string configPath = Path.Combine(tempDir, "7z-config.txt");
-            string exePath = Path.Combine(tempDir, "7zr.exe");
+            Directory.CreateDirectory(tempDir);
 
             using (var fileStream = new FileStream(sfxPath, FileMode.Create))
             {
@@ -93,20 +107,52 @@ namespace LethalCompanyModHelperArchiver
             // Delete the existing archive and exe if they exist
             File.Delete("archive.7z");
             File.Delete(targetFile);
+            btnStart.Enabled = false;
+            Log("\r\n");
+            Log("-----------------------------------------------------\r\n");
+            Log("-- Start building mod installer!\r\n");
+            Log("-----------------------------------------------------\r\n");
 
             // Run 7zr to create the archive
+            var tcs = new TaskCompletionSource<bool>();
             var startInfo = new ProcessStartInfo
             {
                 FileName = exePath,
-                Arguments = $"a archive.7z {installerFileString} {modDirectoriesString} -mx -mf=BCJ2",
+                Arguments = $"a -mx -mf=BCJ2 -bsp1 archive.7z {installerFileString} {modDirectoriesString}",
                 UseShellExecute = false,
-                CreateNoWindow = true
+                CreateNoWindow = true,
+                RedirectStandardOutput = true,
             };
 
-            var process = Process.Start(startInfo);
-            process.WaitForExit();
+            process = new Process();
+            process.StartInfo = startInfo;
+            process.OutputDataReceived += (sender, e) =>
+            {
+                if (e.Data != null)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        Log(e.Data + Environment.NewLine);
+                    }));
+                }
+            }; 
+            process.Exited += (sender, args) =>
+            {
+                tcs.SetResult(true);
+                process.Dispose();
+            }; 
+            process.EnableRaisingEvents = true; // This is necessary to raise the Exited event.
+            process.Start();
+
+            process.BeginOutputReadLine();
+
+            await tcs.Task;
 
             // Concatenate the sfx, config, and archive to create the exe
+            Log("\r\n");
+            Log("-----------------------------------------------------\r\n");
+            Log("-- Create installer.exe file.\r\n");
+            Log("-----------------------------------------------------\r\n");
             using (var outputStream = new FileStream(targetFile, FileMode.Create))
             {
                 using (var inputStream = new FileStream(sfxPath, FileMode.Open))
@@ -124,6 +170,7 @@ namespace LethalCompanyModHelperArchiver
                     inputStream.CopyTo(outputStream);
                 }
             }
+            Log("\r\nCreate installer.exe success.\r\n");
 
             // Clean up the temporary files
             File.Delete(sfxPath);
@@ -134,6 +181,12 @@ namespace LethalCompanyModHelperArchiver
 
             MessageBox.Show(Program.GetI18nString("FormMain/CreateArchiveSuccess"));
             Process.Start("explorer.exe", $"/select,\"{targetFile}\"");
+            btnStart.Enabled = true;
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            StartMake();
         }
     }
 }
