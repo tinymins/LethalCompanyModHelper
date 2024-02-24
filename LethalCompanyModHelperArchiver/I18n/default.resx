@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FormBuild/FormBuildTitle" xml:space="preserve">
+    <value>Build</value>
+  </data>
+  <data name="FormBuild/StopBuild" xml:space="preserve">
+    <value>Stop Build</value>
+  </data>
   <data name="FormMain/BtnStartText" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="FormMain/CreateArchiveSuccess" xml:space="preserve">
     <value>Create archive success!</value>
+  </data>
+  <data name="FormMain/CustomAuthorURL" xml:space="preserve">
+    <value>Author URL:</value>
+  </data>
+  <data name="FormMain/CustomBase" xml:space="preserve">
+    <value>Custom Base Mod</value>
+  </data>
+  <data name="FormMain/CustomBaseName" xml:space="preserve">
+    <value>Base Mod Name:</value>
+  </data>
+  <data name="FormMain/CustomBaseNameNotValid" xml:space="preserve">
+    <value>The custom base mod name contains special characters!</value>
+  </data>
+  <data name="FormMain/CustomBasePath" xml:space="preserve">
+    <value>Base Mod Path:</value>
+  </data>
+  <data name="FormMain/CustomBasePathNotExists" xml:space="preserve">
+    <value>The custom base mod folder does not exist! Please confirm that the selected folder contains a BepInEx subdirectory!</value>
+  </data>
+  <data name="FormMain/CustomOptionalPath" xml:space="preserve">
+    <value>Custom Optional Mods Path:</value>
+  </data>
+  <data name="FormMain/CustomOptionalPathNotExists" xml:space="preserve">
+    <value>The custom optional mods folder does not exist!</value>
+  </data>
+  <data name="FormMain/CustomREADME" xml:space="preserve">
+    <value>README:</value>
+  </data>
+  <data name="FormMain/CustomUpdateURL" xml:space="preserve">
+    <value>Update URL:</value>
   </data>
   <data name="FormMain/Error" xml:space="preserve">
     <value>Error</value>
@@ -129,10 +165,13 @@
   <data name="FormMain/FormMainTitle" xml:space="preserve">
     <value>Lethal Company Mod Helper Archiver</value>
   </data>
-  <data name="FormMain/InstallerFileMissingL" xml:space="preserve">
-    <value>Installer file</value>
+  <data name="FormMain/InstallerFileMissing" xml:space="preserve">
+    <value>Installer file missing:</value>
   </data>
-  <data name="FormMain/InstallerFileMissingR" xml:space="preserve">
-    <value>does not exist.</value>
+  <data name="FormMain/SelectCustomBaseFolder" xml:space="preserve">
+    <value>Please select custom base mod folder.</value>
+  </data>
+  <data name="FormMain/SelectCustomOptionalFolder" xml:space="preserve">
+    <value>Please select custom optional mod folder.</value>
   </data>
 </root>

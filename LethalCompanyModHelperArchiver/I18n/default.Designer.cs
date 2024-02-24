@@ -61,6 +61,24 @@ namespace LethalCompanyModHelperArchiver.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Build.
+        /// </summary>
+        internal static string FormBuild_FormBuildTitle {
+            get {
+                return ResourceManager.GetString("FormBuild/FormBuildTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop Build.
+        /// </summary>
+        internal static string FormBuild_StopBuild {
+            get {
+                return ResourceManager.GetString("FormBuild/StopBuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         internal static string FormMain_BtnStartText {
@@ -75,6 +93,96 @@ namespace LethalCompanyModHelperArchiver.I18n {
         internal static string FormMain_CreateArchiveSuccess {
             get {
                 return ResourceManager.GetString("FormMain/CreateArchiveSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author URL:.
+        /// </summary>
+        internal static string FormMain_CustomAuthorURL {
+            get {
+                return ResourceManager.GetString("FormMain/CustomAuthorURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Base Mod.
+        /// </summary>
+        internal static string FormMain_CustomBase {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Mod Name:.
+        /// </summary>
+        internal static string FormMain_CustomBaseName {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBaseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The custom base mod name contains special characters!.
+        /// </summary>
+        internal static string FormMain_CustomBaseNameNotValid {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBaseNameNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Mod Path:.
+        /// </summary>
+        internal static string FormMain_CustomBasePath {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBasePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The custom base mod folder does not exist! Please confirm that the selected folder contains a BepInEx subdirectory!.
+        /// </summary>
+        internal static string FormMain_CustomBasePathNotExists {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBasePathNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Optional Mods Path:.
+        /// </summary>
+        internal static string FormMain_CustomOptionalPath {
+            get {
+                return ResourceManager.GetString("FormMain/CustomOptionalPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The custom optional mods folder does not exist!.
+        /// </summary>
+        internal static string FormMain_CustomOptionalPathNotExists {
+            get {
+                return ResourceManager.GetString("FormMain/CustomOptionalPathNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to README:.
+        /// </summary>
+        internal static string FormMain_CustomREADME {
+            get {
+                return ResourceManager.GetString("FormMain/CustomREADME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update URL:.
+        /// </summary>
+        internal static string FormMain_CustomUpdateURL {
+            get {
+                return ResourceManager.GetString("FormMain/CustomUpdateURL", resourceCulture);
             }
         }
         
@@ -97,20 +205,29 @@ namespace LethalCompanyModHelperArchiver.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installer file.
+        ///   Looks up a localized string similar to Installer file missing:.
         /// </summary>
-        internal static string FormMain_InstallerFileMissingL {
+        internal static string FormMain_InstallerFileMissing {
             get {
-                return ResourceManager.GetString("FormMain/InstallerFileMissingL", resourceCulture);
+                return ResourceManager.GetString("FormMain/InstallerFileMissing", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to does not exist..
+        ///   Looks up a localized string similar to Please select custom base mod folder..
         /// </summary>
-        internal static string FormMain_InstallerFileMissingR {
+        internal static string FormMain_SelectCustomBaseFolder {
             get {
-                return ResourceManager.GetString("FormMain/InstallerFileMissingR", resourceCulture);
+                return ResourceManager.GetString("FormMain/SelectCustomBaseFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select custom optional mod folder..
+        /// </summary>
+        internal static string FormMain_SelectCustomOptionalFolder {
+            get {
+                return ResourceManager.GetString("FormMain/SelectCustomOptionalFolder", resourceCulture);
             }
         }
     }

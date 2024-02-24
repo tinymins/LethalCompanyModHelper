@@ -61,6 +61,24 @@ namespace LethalCompanyModHelperArchiver.I18n {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 构建.
+        /// </summary>
+        internal static string FormBuild_FormBuildTitle {
+            get {
+                return ResourceManager.GetString("FormBuild/FormBuildTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 停止构建.
+        /// </summary>
+        internal static string FormBuild_StopBuild {
+            get {
+                return ResourceManager.GetString("FormBuild/StopBuild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 开始打包.
         /// </summary>
         internal static string FormMain_BtnStartText {
@@ -75,6 +93,96 @@ namespace LethalCompanyModHelperArchiver.I18n {
         internal static string FormMain_CreateArchiveSuccess {
             get {
                 return ResourceManager.GetString("FormMain/CreateArchiveSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基础MOD作者网址：.
+        /// </summary>
+        internal static string FormMain_CustomAuthorURL {
+            get {
+                return ResourceManager.GetString("FormMain/CustomAuthorURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自定义基础MOD文件夹.
+        /// </summary>
+        internal static string FormMain_CustomBase {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基础MOD名称：.
+        /// </summary>
+        internal static string FormMain_CustomBaseName {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBaseName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自定义基础MOD名称包含特殊字符！.
+        /// </summary>
+        internal static string FormMain_CustomBaseNameNotValid {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBaseNameNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基础MOD文件夹：.
+        /// </summary>
+        internal static string FormMain_CustomBasePath {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBasePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自定义基础MOD文件夹不存在！请确认选择的文件夹包含 BepInEx 子目录！.
+        /// </summary>
+        internal static string FormMain_CustomBasePathNotExists {
+            get {
+                return ResourceManager.GetString("FormMain/CustomBasePathNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 可选MOD文件夹：.
+        /// </summary>
+        internal static string FormMain_CustomOptionalPath {
+            get {
+                return ResourceManager.GetString("FormMain/CustomOptionalPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 可选MOD文件夹不存在！.
+        /// </summary>
+        internal static string FormMain_CustomOptionalPathNotExists {
+            get {
+                return ResourceManager.GetString("FormMain/CustomOptionalPathNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基础MOD描述文案：.
+        /// </summary>
+        internal static string FormMain_CustomREADME {
+            get {
+                return ResourceManager.GetString("FormMain/CustomREADME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基础MOD更新网址：.
+        /// </summary>
+        internal static string FormMain_CustomUpdateURL {
+            get {
+                return ResourceManager.GetString("FormMain/CustomUpdateURL", resourceCulture);
             }
         }
         
@@ -97,20 +205,29 @@ namespace LethalCompanyModHelperArchiver.I18n {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 寻找安装器文件.
+        ///   Looks up a localized string similar to 缺少安装器文件：.
         /// </summary>
-        internal static string FormMain_InstallerFileMissingL {
+        internal static string FormMain_InstallerFileMissing {
             get {
-                return ResourceManager.GetString("FormMain/InstallerFileMissingL", resourceCulture);
+                return ResourceManager.GetString("FormMain/InstallerFileMissing", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 失败！.
+        ///   Looks up a localized string similar to 请选择自定义基础MOD文件夹.
         /// </summary>
-        internal static string FormMain_InstallerFileMissingR {
+        internal static string FormMain_SelectCustomBaseFolder {
             get {
-                return ResourceManager.GetString("FormMain/InstallerFileMissingR", resourceCulture);
+                return ResourceManager.GetString("FormMain/SelectCustomBaseFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 请选择自定义可选MOD文件夹.
+        /// </summary>
+        internal static string FormMain_SelectCustomOptionalFolder {
+            get {
+                return ResourceManager.GetString("FormMain/SelectCustomOptionalFolder", resourceCulture);
             }
         }
     }

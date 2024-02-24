@@ -117,11 +117,47 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FormBuild/FormBuildTitle" xml:space="preserve">
+    <value>构建</value>
+  </data>
+  <data name="FormBuild/StopBuild" xml:space="preserve">
+    <value>停止构建</value>
+  </data>
   <data name="FormMain/BtnStartText" xml:space="preserve">
     <value>开始打包</value>
   </data>
   <data name="FormMain/CreateArchiveSuccess" xml:space="preserve">
     <value>创建安装包成功！</value>
+  </data>
+  <data name="FormMain/CustomAuthorURL" xml:space="preserve">
+    <value>基础MOD作者网址：</value>
+  </data>
+  <data name="FormMain/CustomBase" xml:space="preserve">
+    <value>自定义基础MOD文件夹</value>
+  </data>
+  <data name="FormMain/CustomBaseName" xml:space="preserve">
+    <value>基础MOD名称：</value>
+  </data>
+  <data name="FormMain/CustomBaseNameNotValid" xml:space="preserve">
+    <value>自定义基础MOD名称包含特殊字符！</value>
+  </data>
+  <data name="FormMain/CustomBasePath" xml:space="preserve">
+    <value>基础MOD文件夹：</value>
+  </data>
+  <data name="FormMain/CustomBasePathNotExists" xml:space="preserve">
+    <value>自定义基础MOD文件夹不存在！请确认选择的文件夹包含 BepInEx 子目录！</value>
+  </data>
+  <data name="FormMain/CustomOptionalPath" xml:space="preserve">
+    <value>可选MOD文件夹：</value>
+  </data>
+  <data name="FormMain/CustomOptionalPathNotExists" xml:space="preserve">
+    <value>可选MOD文件夹不存在！</value>
+  </data>
+  <data name="FormMain/CustomREADME" xml:space="preserve">
+    <value>基础MOD描述文案：</value>
+  </data>
+  <data name="FormMain/CustomUpdateURL" xml:space="preserve">
+    <value>基础MOD更新网址：</value>
   </data>
   <data name="FormMain/Error" xml:space="preserve">
     <value>错误</value>
@@ -129,10 +165,13 @@
   <data name="FormMain/FormMainTitle" xml:space="preserve">
     <value>致命公司安装器打包程序</value>
   </data>
-  <data name="FormMain/InstallerFileMissingL" xml:space="preserve">
-    <value>寻找安装器文件</value>
+  <data name="FormMain/InstallerFileMissing" xml:space="preserve">
+    <value>缺少安装器文件：</value>
   </data>
-  <data name="FormMain/InstallerFileMissingR" xml:space="preserve">
-    <value>失败！</value>
+  <data name="FormMain/SelectCustomBaseFolder" xml:space="preserve">
+    <value>请选择自定义基础MOD文件夹</value>
+  </data>
+  <data name="FormMain/SelectCustomOptionalFolder" xml:space="preserve">
+    <value>请选择自定义可选MOD文件夹</value>
   </data>
 </root>
