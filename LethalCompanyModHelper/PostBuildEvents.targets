@@ -42,6 +42,7 @@
 	</Target>
 	<Target Name="CreateZip" AfterTargets="PrepareZip" Condition="$(Configuration.Contains('Release'))">
 		<Message Importance="high" Text="Zipping project for distribution." />
+		<MakeDir Directories="$(ReleaseZipDirectory)"/>
 		<ZipDirectory DestinationFile="$(ReleaseZipDirectory)$(AssemblyName)-v$(AssemblyVersion)$(ReleaseZipFileNameSuffix).zip" SourceDirectory="$(ZipTempDir)" Overwrite="true" />
 	</Target>
 	<Target Name="Cleanup" AfterTargets="CreateZip" Condition="'$(Configuration)' == 'Release'">
