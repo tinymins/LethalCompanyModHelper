@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Resources;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LethalCompanyModHelperArchiver
@@ -19,6 +16,12 @@ namespace LethalCompanyModHelperArchiver
         [STAThread]
         static void Main()
         {
+            if (Properties.Settings.Default.UserSettingsUpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UserSettingsUpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
