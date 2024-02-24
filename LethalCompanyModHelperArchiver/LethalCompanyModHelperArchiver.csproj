@@ -133,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <Content Include="PostBuildEvents.targets" />
+    <Content Include="Assets.targets" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="PostBuildEvents.targets" />
 </Project>

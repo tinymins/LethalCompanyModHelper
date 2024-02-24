@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Import project-specific data. -->
+	<Import Project="$(ProjectDir)PostBuildEvents.config.targets" />
+	<!-- Import extra information from project-specific files. -->
+	<Import Project="$(ProjectDir)PostBuildEvents.extra.targets" Condition="Exists('$(ProjectDir)PostBuildEvents.extra.targets')" />
+
+	<!-- Defining the file names of project-specific data we'll load later. -->
+	<PropertyGroup>
+		<ZipTempDir>$(OutputPath)ZipMeUp</ZipTempDir>
+	</PropertyGroup>
+
+	<!-- Copy dependency asset files. -->
+	<Target Name="CopyDependencyAssets" BeforeTargets="BeforeBuild" Condition="'@(DependencyAssets)' != ''">
+		<Message Importance="high" Text="Copying dependency asset files: @(DependencesAssets)" />
+		<Copy SourceFiles="@(DependencyAssets)" DestinationFolder="$(TargetDir)"/>
+	</Target>
+
+	<!-- Copy newly built files to directory. -->
+	<Target Name="CopyToDirectory" AfterTargets="Build" Condition="'$(CopyToDirectory)' != ''">
+		<Message Importance="high" Text="Copying files to directory => $(CopyToDirectory)" />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(CopyToDirectory)" />
+		<Copy SourceFiles="@(ReleaseAssets)" DestinationFolder="$(CopyToDirectory)"/>
+	</Target>
+
+	<!-- Find the current version of the assembly. -->
+	<Target Name="GetAssemblyVersion" AfterTargets="Build" Condition="$(Configuration.Contains('Release'))">
+		<GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+			<Output TaskParameter="Assemblies" ItemName="AssemblyIdentity" />
+		</GetAssemblyIdentity>
+		<PropertyGroup>
+			<AssemblyVersion>%(AssemblyIdentity.Version)</AssemblyVersion>
+		</PropertyGroup>
+		<Message Importance="high" Text="Assembly Version: $(AssemblyVersion)" />
+	</Target>
+
+	<!-- Automatically create the zip file, ready for distribution. -->
+	<Target Name="PrepareZip" AfterTargets="Build" Condition="$(Configuration.Contains('Release'))">
+		<Message Importance="normal" Text="Copying files to temporary directory." />
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ZipTempDir)\$(ZipStructure)" />
+		<Copy SourceFiles="@(ReleaseAssets)" DestinationFolder="$(ZipTempDir)\$(ZipStructure)" />
+	</Target>
+	<Target Name="CreateZip" AfterTargets="PrepareZip" Condition="$(Configuration.Contains('Release'))">
+		<Message Importance="high" Text="Zipping project for distribution." />
+		<ZipDirectory DestinationFile="$(ReleaseZipDirectory)$(AssemblyName)-v$(AssemblyVersion)$(ReleaseZipFileNameSuffix).zip" SourceDirectory="$(ZipTempDir)" Overwrite="true" />
+	</Target>
+	<Target Name="Cleanup" AfterTargets="CreateZip" Condition="'$(Configuration)' == 'Release'">
+		<Message Importance="normal" Text="Cleaning up." />
+		<RemoveDir Directories="$(ZipTempDir)" />
+	</Target>
+</Project>

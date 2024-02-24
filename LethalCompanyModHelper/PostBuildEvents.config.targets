@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<!-- <CopyToDirectory>$(SolutionDir)\Releases</CopyToDirectory> -->
+		<ReleaseZipDirectory>$(SolutionDir)\Releases\</ReleaseZipDirectory>
+		<ReleaseZipFileNameSuffix>-windows-amd64-net48</ReleaseZipFileNameSuffix>
+		<ReleaseZipStructure>.</ReleaseZipStructure>
+	</PropertyGroup>
+	<ItemGroup>
+		<ReleaseAssets Include="$(TargetDir)Gameloop.Vdf.dll" />
+		<ReleaseAssets Include="$(TargetDir)README.txt" />
+		<ReleaseAssets Include="$(TargetDir)帮助.txt" />
+	</ItemGroup>
+</Project>

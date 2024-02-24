@@ -163,6 +163,9 @@
     <Content Include="帮助.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="PostBuildEvents.targets" />
+    <Content Include="Assets.targets" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="PostBuildEvents.targets" />
 </Project>

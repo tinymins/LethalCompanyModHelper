@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LethalCompanyModHelper", "LethalCompanyModHelper\LethalCompanyModHelper.csproj", "{5CF0AA52-EB72-4EF5-ADE3-FBC2CC17E93A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LethalCompanyModHelperArchiver", "LethalCompanyModHelperArchiver\LethalCompanyModHelperArchiver.csproj", "{5B2469E9-D690-4032-9ADA-28FCFCBE1085}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5CF0AA52-EB72-4EF5-ADE3-FBC2CC17E93A} = {5CF0AA52-EB72-4EF5-ADE3-FBC2CC17E93A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
