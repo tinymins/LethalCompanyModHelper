@@ -1,6 +1,6 @@
 # Lethal Company Mod Helper
 
-[中文说明](./README.zh-CN.md)
+[绠�浣撲腑鏂嘳(./README.zh-CN.md)
 
 ## How to Use
 
