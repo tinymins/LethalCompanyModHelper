@@ -89,6 +89,10 @@ namespace LethalCompanyModHelper
             Process[] processes = Process.GetProcessesByName("Lethal Company");
             if (processes.Length > 0)
             {
+                if (clbOptional.Items.Count == 0)
+                {
+                    this.Close();
+                }
                 MessageBox.Show(Program.GetI18nString("FormInstall/ProcessExistsError"), Program.GetI18nString("FormInstall/Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
