@@ -129,7 +129,7 @@ namespace LethalCompanyModHelper
             linkHomepage.Text = Program.GetI18nString("FormMain/AboutSoftwareAuthor");
             btnMod.Text = Program.GetI18nString("FormMain/InstallMod");
             btnStart.Text = Program.GetI18nString("FormMain/StartGame");
-            btnAbout.Text = Program.GetI18nString("FormMain/AboutModAuthor");
+            btnAboutAuthor.Text = Program.GetI18nString("FormMain/AboutModAuthor");
             btnUpdate.Text = Program.GetI18nString("FormMain/CheckModUpdate");
 
             // 获取游戏
@@ -237,16 +237,16 @@ namespace LethalCompanyModHelper
             }
             txtAbout.Text = readme;
 
-            string aboutFilePath = Path.Combine(modName, "ABOUT.txt");
-            aboutURL = File.Exists(aboutFilePath) ? File.ReadAllText(aboutFilePath) : null;
-            btnAbout.Enabled = IsValidURL(aboutURL);
+            string authorFilePath = Path.Combine(modName, "AUTHOR.txt");
+            aboutURL = File.Exists(authorFilePath) ? File.ReadAllText(authorFilePath) : null;
+            btnAboutAuthor.Enabled = IsValidURL(aboutURL);
 
             string updateFilePath = Path.Combine(modName, "UPDATE.txt");
             updateURL = File.Exists(updateFilePath) ? File.ReadAllText(updateFilePath) : null;
             btnUpdate.Enabled = IsValidURL(updateURL);
         }
 
-        private void btnAbout_Click(object sender, EventArgs e)
+        private void btnAboutAuthor_Click(object sender, EventArgs e)
         {
             if (!IsValidURL(aboutURL))
             {

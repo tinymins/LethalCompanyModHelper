@@ -36,7 +36,7 @@
             this.linkOpenGamePath = new System.Windows.Forms.LinkLabel();
             this.linkOpenSavePath = new System.Windows.Forms.LinkLabel();
             this.txtAbout = new System.Windows.Forms.TextBox();
-            this.btnAbout = new System.Windows.Forms.Button();
+            this.btnAboutAuthor = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -133,15 +133,15 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAbout.Location = new System.Drawing.Point(515, 778);
-            this.btnAbout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(245, 82);
-            this.btnAbout.TabIndex = 7;
-            this.btnAbout.Text = "About Author";
-            this.btnAbout.UseVisualStyleBackColor = true;
-            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            this.btnAboutAuthor.Font = new System.Drawing.Font("Microsoft YaHei UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAboutAuthor.Location = new System.Drawing.Point(515, 778);
+            this.btnAboutAuthor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAboutAuthor.Name = "btnAbout";
+            this.btnAboutAuthor.Size = new System.Drawing.Size(245, 82);
+            this.btnAboutAuthor.TabIndex = 7;
+            this.btnAboutAuthor.Text = "About Author";
+            this.btnAboutAuthor.UseVisualStyleBackColor = true;
+            this.btnAboutAuthor.Click += new System.EventHandler(this.btnAboutAuthor_Click);
             // 
             // btnUpdate
             // 
@@ -195,7 +195,7 @@
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.txtAbout);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.btnAboutAuthor);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnMod);
             this.Controls.Add(this.lstMods);
@@ -225,7 +225,7 @@
         private System.Windows.Forms.LinkLabel linkOpenGamePath;
         private System.Windows.Forms.LinkLabel linkOpenSavePath;
         private System.Windows.Forms.TextBox txtAbout;
-        private System.Windows.Forms.Button btnAbout;
+        private System.Windows.Forms.Button btnAboutAuthor;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
